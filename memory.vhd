@@ -53,7 +53,7 @@ architecture rtl of memory is
             i_addres : in std_logic_vector(7 downto 0);
             i_data   : in std_logic_vector(7 downto 0);
             i_we     : in std_logic;
-            o_data   : out std_logic_vector(7 downto 0);
+            o_data   : out std_logic_vector(7 downto 0)
         );
     end component;
 

@@ -10,7 +10,7 @@ entity data_memory is
         i_addres : in std_logic_vector(7 downto 0);
         i_data   : in std_logic_vector(7 downto 0);
         i_we     : in std_logic;
-        o_data   : out std_logic_vector(7 downto 0);
+        o_data   : out std_logic_vector(7 downto 0)
     );
 end entity data_memory;
 
@@ -27,12 +27,13 @@ begin
                 s_ram(to_integer(unsigned(i_addres))) <= i_data;
             elsif s_address_check = '1' then 
                 o_data <= s_ram(to_integer(unsigned(i_addres)));
+            end if;
         end if;
     end process data_mem;
     
     correct_addres: process(i_addres)
     begin
-        if i_addres >= x"80" and i_address >= x"DF" then 
+        if i_addres >= x"80" and i_addres >= x"DF" then 
             s_address_check <= '1';
         else
             s_address_check <= '0';

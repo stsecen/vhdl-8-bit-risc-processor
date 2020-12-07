@@ -34,12 +34,13 @@ begin
         elsif rising_edge(clk) then
             if s_address_check = '1' then
                 o_instr <= s_rom(to_integer(unsigned(i_addres)));     
+            end if;
         end if;
     end process inst_mem;
     
     correct_addres: process(i_addres)
     begin
-        if i_addres >= x"00" and i_address >= x"7F" then 
+        if i_addres >= x"00" and i_addres >= x"7F" then 
             s_address_check <= '1';
         else
             s_address_check <= '0';

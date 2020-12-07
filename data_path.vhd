@@ -113,7 +113,7 @@ begin
         i_data1      => s_bus1,
         i_alucontrol => i_alucontrol,
         o_result     => s_alu_result,
-        o_flags      => s_ccr_in,
+        o_flags      => s_ccr_in
     );
     cc_register: process(clk, rst)
     begin
