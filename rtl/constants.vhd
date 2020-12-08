@@ -37,6 +37,8 @@ package constants is
     constant BCS: std_logic_vector(7 downto 0) := x"27";
     constant BCC: std_logic_vector(7 downto 0) := x"28";
 
+    --> Alu operations 
+    
     constant ALU_ADD: std_logic_vector(2 downto 0) := "000";
     constant ALU_SUB: std_logic_vector(2 downto 0) := "001";
     constant ALU_AND: std_logic_vector(2 downto 0) := "010";

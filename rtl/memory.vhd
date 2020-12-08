@@ -9,6 +9,7 @@ entity memory is
         clk, rst    :  in std_logic;
         i_address   :  in std_logic_vector(7 downto 0);
         i_we        :  in std_logic;
+        i_data      :  in std_logic_vector(7 downto 0);
         i_port00    :  in std_logic_vector(7 downto 0);
         i_port01    :  in std_logic_vector(7 downto 0);
         i_port02    :  in std_logic_vector(7 downto 0);
