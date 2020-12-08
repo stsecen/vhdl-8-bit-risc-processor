@@ -47,9 +47,9 @@ begin
             s_areg when i_bus1cont = "01" else
             s_breg when i_bus1cont = "10" else
             "00";
-    s_bus2<=s_alu_result when i_bus1cont = "00" else
-            s_bus1 when i_bus1cont = "01" else
-            i_from_mem when i_bus1cont = "10" else
+    s_bus2<=s_alu_result when i_bus2cont = "00" else
+            s_bus1 when i_bus2cont = "01" else
+            i_from_mem when i_bus2cont = "10" else
             "00";
     --> output assignment
     o_address <= s_mar;

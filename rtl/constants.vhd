@@ -28,7 +28,7 @@ package constants is
     --> Branch instructions:
 
     constant BRA: std_logic_vector(7 downto 0) := x"20";
-    constant BMI: std_logic_vector(7 downto 0) := x"21";
+    constant BNI: std_logic_vector(7 downto 0) := x"21";
     constant BPL: std_logic_vector(7 downto 0) := x"22";
     constant BEQ: std_logic_vector(7 downto 0) := x"23";
     constant BNE: std_logic_vector(7 downto 0) := x"24";
