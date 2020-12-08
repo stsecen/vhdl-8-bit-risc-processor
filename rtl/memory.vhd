@@ -26,7 +26,7 @@ entity memory is
         i_port0D    :  in std_logic_vector(7 downto 0);
         i_port0E    :  in std_logic_vector(7 downto 0);
         i_port0F    :  in std_logic_vector(7 downto 0);
-        o_mem       : out std_logic_vector(7 downto 0);
+        o_data      : out std_logic_vector(7 downto 0);
         o_port00    : out std_logic_vector(7 downto 0);
         o_port01    : out std_logic_vector(7 downto 0);
         o_port02    : out std_logic_vector(7 downto 0);
@@ -91,16 +91,16 @@ architecture rtl of memory is
         );
     end component instruction_memory;
     
-    signal s_instruction, s_data_out : in std_logic_vector(7 downto 0) := (others => '0');
+    signal s_instruction, s_data_out : std_logic_vector(7 downto 0) := (others => '0');
 
 begin
-    rom: instruction_memory : port map(
+    rom: instruction_memory port map(
         clk => clk, 
         rst => rst,
         i_addres => i_address, 
         o_instr => s_instruction
     );
-    ram: data_memory : port map(
+    ram: data_memory port map(
         clk => clk, 
         rst => rst,
         i_addres => i_address,
@@ -108,10 +108,10 @@ begin
         i_we     => i_we,
         o_data   => s_data_out
     );
-    oport: output_ports : port map(
+    oport: output_ports port map(
         clk => clk, 
         rst  => rst,
-        i_address => i_address
+        i_address => i_address,
         i_data    => i_data,
         i_we      => i_we,
         o_port00  => o_port00,
@@ -129,7 +129,7 @@ begin
         o_port0C  => o_port0C,
         o_port0D  => o_port0D,
         o_port0E  => o_port0E,
-        o_port0F  => o_port00F
+        o_port0F  => o_port0F
     );
 
     out_mux: process(s_instruction,s_data_out,i_port01,i_port02,i_port03,i_port04,i_port05,

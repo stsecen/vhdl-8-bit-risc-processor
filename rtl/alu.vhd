@@ -19,15 +19,15 @@ architecture rtl of alu is
     signal s_result : std_logic_vector(8 downto 0) := (others => '0');
     signal s_addv, s_subv : std_logic := '0';
 begin
-    s_data0 <= '0' & i_data0;
-    s_data1 <= '0' & i_data1;
+    s_data0 <= signed('0' & i_data0);
+    s_data1 <= signed('0' & i_data1);
     o_result <= s_result(7 downto 0);
     o_flags(3) <= s_result(7); --> negative signal 
     o_flags(2) <= '1' when s_result(7 downto 0) = x"00" else '0'; --> zero flag
-    s_addv <= (not(i_data0(7)) and not i_data1(7) and s_result(7) 
-                or (i_data0(7) and i_data1(7) and not(s_result(7))));
-    s_subv <= (not(i_data0(7)) and i_data1(7) and s_result(7) 
-                or (i_data0(7) and not(i_data1(7)) and not(s_result(7)))); --> overflow flag
+    s_addv <= (not(i_data0(7)) and not i_data1(7) and s_result(7))
+                or (i_data0(7) and i_data1(7) and not(s_result(7)));
+    s_subv <= (not(i_data0(7)) and i_data1(7) and s_result(7))
+                or (i_data0(7) and not(i_data1(7)) and not(s_result(7))); --> overflow flag
     o_flags(1) <= s_addv when (i_alucontrol = ALU_ADD) else
                   s_subv when (i_alucontrol = ALU_SUB) else
                     '0';

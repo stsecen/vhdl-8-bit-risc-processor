@@ -17,14 +17,14 @@ entity control_unit is
         o_b_load        : out std_logic;   
         o_alucontrol    : out std_logic_vector(2 downto 0);                   
         o_ccrload       : out std_logic;   
-        o_bus1cont      : out std_logic;   
-        o_bus2cont      : out std_logic;   
+        o_bus1cont      : out std_logic_vector(1 downto 0);   
+        o_bus2cont      : out std_logic_vector(1 downto 0);   
         o_we            : out std_logic
     );
 end entity control_unit;
 
 architecture rtl of control_unit is
-    state_reg, state_next : state_type := s_fetch0;
+    signal state_reg, state_next : type_state := s_fetch0;
 begin
 
     current_state: process(clk, rst)
@@ -114,7 +114,7 @@ begin
                     end if;
                 elsif i_inst_register = BCS then
                     if i_ccr_res(0) = '1' then
-                        state_next <= s_bcd4;
+                        state_next <= s_bcs4;
                     else
                         state_next <= s_bcs7;
                     end if;
@@ -168,13 +168,13 @@ begin
                 state_next <= s_stadir7;
             when s_stadir7 =>
                 state_next <= s_fetch0;
-            when s_stabdir4 =>
-                state_next <= s_stabdir5;
-            when s_stabdir5 =>
-                state_next <= s_stabdir6;
-            when s_stabdir6 =>
-                state_next <= s_stabdir7;
-            when s_stabdir7 =>
+            when s_stbdir4 =>
+                state_next <= s_stbdir5;
+            when s_stbdir5 =>
+                state_next <= s_stbdir6;
+            when s_stbdir6 =>
+                state_next <= s_stbdir7;
+            when s_stbdir7 =>
                 state_next <= s_fetch0;
             -->> alu operations 
             when s_addab4 =>
@@ -420,7 +420,7 @@ begin
             when s_bra5 =>
                 --> do nothing wait 1 clock cycle
             when s_bra6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bni4 =>
                 o_bus1cont <= "00";	--> select pc register
@@ -429,7 +429,7 @@ begin
             when s_bni5 =>
                 --> do nothing 
             when s_bni6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bni7 => 
                 o_pc_inc <= '1'; --> branch not taken state
@@ -440,7 +440,7 @@ begin
             when s_bpl5 =>
             --> do nothing 
             when s_bpl6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bpl7 =>
                 o_pc_inc <= '1'; --> branch not taken state
@@ -451,7 +451,7 @@ begin
             when s_beq5 =>
             --> do nothing 
             when s_beq6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_beq7 =>
                 o_pc_inc <= '1'; --> branch not taken state
@@ -462,7 +462,7 @@ begin
             when s_bne5 =>
             --> do nothing 
             when s_bne6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bne7 =>
                 o_pc_inc <= '1'; --> branch not taken state
@@ -473,7 +473,7 @@ begin
             when s_bvs5 =>
             --> do nothing 
             when s_bvs6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bvs7 =>
                 o_pc_inc <= '1'; --> branch not taken state
@@ -484,7 +484,7 @@ begin
             when s_bvc5 =>
             --> do nothing 
             when s_bvc6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bvc7 =>
                 o_pc_inc <= '1'; --> branch not taken state
@@ -495,7 +495,7 @@ begin
             when s_bcs5 =>
             --> do nothing 
             when s_bcs6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bcs7 =>
                 o_pc_inc <= '1'; --> branch not taken state
@@ -506,7 +506,7 @@ begin
             when s_bcc5 =>
             --> do nothing 
             when s_bcc6 =>
-                o_bus2cont <= "10" --> select memory 
+                o_bus2cont <= "10"; --> select memory 
                 o_pc_load <= '1'; --> jump new address
             when s_bcc7 =>    
                 o_pc_inc <= '1'; --> branch not taken state    
