@@ -1,6 +1,6 @@
 # 8-bit-risc-processor
  this repo include 8-bit risc processor which has 23 integer instructions.
-
+![Screenshot](top_module.png)
 # Table of ISA
   Mnemonic| Opcode, Operand | Description 
   :---:|:---:|:---:|
