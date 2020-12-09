@@ -1,5 +1,4 @@
-![alt text](https://github.com/[tahasecen]/[vhdl-8-bit-risc-processor
-]/blob/[main]/top_module.png?raw=true)
+![alt text](https://github.com/tahasecen/vhdl-8-bit-risc-processor/blob/main/top_module.png?raw=true)
 # 8-bit-risc-processor
  this repo include 8-bit risc processor which has 23 integer instructions.
 
