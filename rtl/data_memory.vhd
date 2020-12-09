@@ -23,7 +23,7 @@ begin
         if rst = '1' then
             s_ram <= (others => (others=>'0'));
         elsif rising_edge(clk) then
-            if s_address_check and i_we = '1' then 
+            if s_address_check = '1' and i_we = '1' then 
                 s_ram(to_integer(unsigned(i_addres))) <= i_data;
             elsif s_address_check = '1' then 
                 o_data <= s_ram(to_integer(unsigned(i_addres)));

@@ -17,11 +17,11 @@ package constants is
     constant ADD_AB: std_logic_vector(7 downto 0) := x"42";
     constant SUB_AB: std_logic_vector(7 downto 0) := x"43";
     constant AND_AB: std_logic_vector(7 downto 0) := x"44";
-    constant OR_AB: std_logic_vector(7 downto 0) := x"45";
-    constant INC_A: std_logic_vector(7 downto 0) := x"46";
-    constant DEC_A: std_logic_vector(7 downto 0) := x"47";
-    constant INC_B: std_logic_vector(7 downto 0) := x"48";
-    constant DEC_B: std_logic_vector(7 downto 0) := x"49";
+    constant OR_AB: std_logic_vector(7 downto 0)  := x"45";
+    constant INC_A: std_logic_vector(7 downto 0)  := x"46";
+    constant DEC_A: std_logic_vector(7 downto 0)  := x"47";
+    constant INC_B: std_logic_vector(7 downto 0)  := x"48";
+    constant DEC_B: std_logic_vector(7 downto 0)  := x"49";
 
     --> Branch instructions:
 

@@ -20,7 +20,7 @@ architecture rtl of instruction_memory is
         2 => STA_DIR,
         4 => x"80",
         5 => BRA,
-        5 => x"00",
+        6 => x"00",
         others => x"00"
     );
     signal s_address_check : std_logic := '0';

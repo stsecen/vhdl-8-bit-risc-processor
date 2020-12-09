@@ -13,7 +13,7 @@ entity data_path is
         i_pc_inc        :  in std_logic;
         i_a_load        :  in std_logic;
         i_b_load        :  in std_logic;
-        i_alucontrol    :  in std_logic;
+        i_alucontrol    :  in std_logic_vector(2 downto 0);
         i_ccrload       :  in std_logic;
         i_bus1cont      :  in std_logic_vector(1 downto 0);
         i_bus2cont      :  in std_logic_vector(1 downto 0);
@@ -37,7 +37,7 @@ architecture rtl of data_path is
         );
     end component;
 
-    signal s_bus1,s_bus2 : std_logic_vector(1 downto 0);
+    signal s_bus1,s_bus2 : std_logic_vector(7 downto 0);
     signal s_alu_result  : std_logic_vector(7 downto 0);
     signal s_ir,s_mar,s_pc,s_areg,s_breg: std_logic_vector(7 downto 0);
     signal s_ccr_in, s_ccr_out : std_logic_vector(3 downto 0);
@@ -46,11 +46,11 @@ begin
     s_bus1<=s_pc when i_bus1cont = "00" else
             s_areg when i_bus1cont = "01" else
             s_breg when i_bus1cont = "10" else
-            "00";
+            "00000000";
     s_bus2<=s_alu_result when i_bus2cont = "00" else
             s_bus1 when i_bus2cont = "01" else
             i_from_mem when i_bus2cont = "10" else
-            "00";
+            "00000000";
     --> output assignment
     o_address <= s_mar;
     o_ccr_res <= s_ccr_out;
@@ -72,7 +72,7 @@ begin
             s_mar <= (others => '0');
         elsif rising_edge(clk) then
             if i_mar_load = '1' then 
-                s_ir <= s_bus2;
+                s_mar <= s_bus2;
             end if;
         end if;
     end process mem_access_reg;

@@ -8,7 +8,7 @@ entity cpu is
     port (
         clk, rst        :  in std_logic;
         i_from_mem      :  in std_logic_vector(7 downto 0);
-        o_to_mem        :  in std_logic_vector(7 downto 0);
+        o_to_mem        : out std_logic_vector(7 downto 0);
         o_address       : out std_logic_vector(7 downto 0);
         o_we            : out std_logic
     );
@@ -28,8 +28,8 @@ architecture rtl of cpu is
             o_b_load        : out std_logic;   
             o_alucontrol    : out std_logic_vector(2 downto 0);                   
             o_ccrload       : out std_logic;   
-            o_bus1cont      : out std_logic;   
-            o_bus2cont      : out std_logic;   
+            o_bus1cont      : out std_logic_vector(1 downto 0);   
+            o_bus2cont      : out std_logic_vector(1 downto 0);   
             o_we            : out std_logic
         );
     end component;
@@ -42,7 +42,7 @@ architecture rtl of cpu is
             i_pc_inc        :  in std_logic;
             i_a_load        :  in std_logic;
             i_b_load        :  in std_logic;
-            i_alucontrol    :  in std_logic;
+            i_alucontrol    :  in std_logic_vector(2 downto 0);
             i_ccrload       :  in std_logic;
             i_bus1cont      :  in std_logic_vector(1 downto 0);
             i_bus2cont      :  in std_logic_vector(1 downto 0);

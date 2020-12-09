@@ -1,7 +1,7 @@
 # 8-bit-risc-processor
  this repo include 8-bit risc processor which has 23 integer instructions.
 
-# Table of ISA:
+# Table of ISA
   Mnemonic| Opcode, Operand | Description 
   :---:|:---:|:---:|
   LDA_IMM |x"86", data|Load Register A uing immediate addresing
@@ -27,3 +27,9 @@
   BVC     |x"26", addr|Branch to Address provided if flag V (overflow) = 0 |
   BCS     |x"27", addr|Branch to Address provided if flag Z (zero) = 1 |
   BCC     |x"28", addr|Branch to Address provided if flag Z (zero) = 0|
+
+# Table of Utilization
+    Implementation was performed using Vivado 2020.1 for Arty Z7-20 (xc7z020clg400-1) for 10 input port 16 output port 
+  LUT | Reg | Power | Freq 
+  :---:|:---:|:---:|:---:|
+  24  |26|0.105W|50 Mhz

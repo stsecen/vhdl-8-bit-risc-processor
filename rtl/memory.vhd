@@ -132,7 +132,7 @@ begin
         o_port0F  => o_port0F
     );
 
-    out_mux: process(s_instruction,s_data_out,i_port01,i_port02,i_port03,i_port04,i_port05,
+    out_mux: process(i_address,s_instruction,s_data_out,i_port00,i_port01,i_port02,i_port03,i_port04,i_port05,
                     i_port06,i_port07,i_port08,i_port09,i_port0A,i_port0B,i_port0C,i_port0D,
                     i_port0E,i_port0F)
     begin
