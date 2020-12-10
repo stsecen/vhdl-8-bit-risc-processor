@@ -6,7 +6,7 @@ use work.constants.all;
 
 entity instruction_memory is
     port (
-        clk, rst : in std_logic;
+        clk      : in std_logic;
         i_addres : in std_logic_vector(7 downto 0);
         o_instr  : out std_logic_vector(7 downto 0)
     );
@@ -27,11 +27,9 @@ architecture rtl of instruction_memory is
     
 begin
     
-    inst_mem: process(clk, rst)
+    inst_mem: process(clk)
     begin
-        if rst = '1' then
-            s_rom <= ( others => (others => '0'));
-        elsif rising_edge(clk) then
+        if rising_edge(clk) then
             if s_address_check = '1' then
                 o_instr <= s_rom(to_integer(unsigned(i_addres)));     
             end if;

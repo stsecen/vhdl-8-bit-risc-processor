@@ -85,7 +85,7 @@ architecture rtl of memory is
 
     component instruction_memory is
         port (
-            clk, rst : in std_logic;
+            clk      : in std_logic;
             i_addres : in std_logic_vector(7 downto 0);
             o_instr  : out std_logic_vector(7 downto 0)
         );
@@ -96,7 +96,6 @@ architecture rtl of memory is
 begin
     rom: instruction_memory port map(
         clk => clk, 
-        rst => rst,
         i_addres => i_address, 
         o_instr => s_instruction
     );
